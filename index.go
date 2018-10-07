@@ -1,10 +1,14 @@
 package index
 
 import (
-	"github.com/pkg/errors"
 	"reflect"
+
+	"github.com/pkg/errors"
 )
 
+// GetAll function allows you to check on which indexes your item
+// is positioned in the slice. First argument is the slice in which
+// you are searching for your item and the second one is the item.
 func GetAll(_slice interface{}, _item interface{}) (indexes []int, err error) {
 	indexes = []int{}
 
