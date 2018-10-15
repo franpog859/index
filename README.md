@@ -2,6 +2,8 @@
 <img src="https://raw.githubusercontent.com/franpog859/index/master/logo_index.png">
 </p>
 
+[![Documentation](https://godoc.org/github.com/franpog859/index?status.svg)](http://godoc.org/github.com/franpog859/index)
+[![Go Report Card](https://goreportcard.com/badge/github.com/franpog859/index)](https://goreportcard.com/report/github.com/franpog859/index)
 [![CircleCI](https://circleci.com/gh/franpog859/index.svg?style=shield)](https://circleci.com/gh/franpog859/index)
 
 ## Description
