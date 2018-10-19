@@ -26,17 +26,41 @@ func GetAll(_slice interface{}, _item interface{}) (indexes []int, err error) {
 	return indexes, nil
 }
 
-func sliceFromInterface(sliceInterface interface{}) (r0 []interface{}, err error) {
+func sliceFromInterface(sliceInterface interface{}) (ret []interface{}, err error) {
 	slice := reflect.ValueOf(sliceInterface)
 	if slice.Kind() != reflect.Slice {
 		return nil, errors.New("index: given non-slice type")
 	}
 
-	r0 = make([]interface{}, slice.Len())
+	ret = make([]interface{}, slice.Len())
 
 	for i := 0; i < slice.Len(); i++ {
-		r0[i] = slice.Index(i).Interface()
+		ret[i] = slice.Index(i).Interface()
 	}
 
-	return r0, nil
+	return ret, nil
+}
+
+// IsAny function allows you to check if there is at least one item
+// in the slice that you gave. First argument is the slice in which
+// you are searching for your item and the second one is the item.
+func IsAny(_slice interface{}, _item interface{}) (isAny bool, err error) {
+	slice, err := sliceFromInterface(_slice)
+	if err != nil {
+		return false, err
+	}
+
+	return (len(slice) > 0), nil
+}
+
+// HowMany function allows you to check how many items that you gave
+// exist in the slice. First argument is the slice in which
+// you are searching for your items and the second one is the item.
+func HowMany(_slice interface{}, _item interface{}) (howMany int, err error) {
+	slice, err := sliceFromInterface(_slice)
+	if err != nil {
+		return 0, err
+	}
+
+	return len(slice), nil
 }
