@@ -42,9 +42,10 @@ Output:
 Remember not to pass some complex slices like multidimensional slices or slices of maps. This package just does not deal with such complexity so remember to check the `err` value! 
 
 If you want to see examples of usage other functions go to [USAGE.md](https://github.com/franpog859/index/blob/master/USAGE.md) file.
+
 ## Contribution
 
-If you want to make this package better just fork this repository and prepare your pull request! Remember to keep the code clean and to test your implementation :wink:
+If you want to make this package better just fork this repository and prepare your pull request! Remember to keep the code clean and to test your implementation :wink: See also [CONTRIBUTING.md](https://github.com/franpog859/index/blob/master/CONTRIBUTING.md) file for more informations about preparing your pull request and the workflow.
 
 To test this package run in your terminal: 
 - `git clone https://github.com/franpog859/index.git`
