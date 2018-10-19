@@ -1,3 +1,4 @@
+// Package index provides high level generic like functions for slices.
 package index
 
 import (
