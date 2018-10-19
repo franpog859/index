@@ -47,6 +47,6 @@ If you want to make this package better just fork this repository and prepare yo
 To test this package run in your terminal: 
 - `git clone https://github.com/franpog859/index.git`
 - `cd index` 
-- `go test ./...`
+- `go test -cover ./...`
 
 If you see some bug or bad habit feel free to tell me! 
