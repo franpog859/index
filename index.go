@@ -45,22 +45,22 @@ func sliceFromInterface(sliceInterface interface{}) (ret []interface{}, err erro
 // in the slice that you gave. First argument is the slice in which
 // you are searching for your item and the second one is the item.
 func IsAny(_slice interface{}, _item interface{}) (isAny bool, err error) {
-	slice, err := sliceFromInterface(_slice)
+	indexes, err := GetAll(_slice, _item)
 	if err != nil {
 		return false, err
 	}
 
-	return (len(slice) > 0), nil
+	return len(indexes) > 0, nil
 }
 
 // HowMany function allows you to check how many items that you gave
 // exist in the slice. First argument is the slice in which
 // you are searching for your items and the second one is the item.
 func HowMany(_slice interface{}, _item interface{}) (howMany int, err error) {
-	slice, err := sliceFromInterface(_slice)
+	indexes, err := GetAll(_slice, _item)
 	if err != nil {
 		return 0, err
 	}
 
-	return len(slice), nil
+	return len(indexes), nil
 }
