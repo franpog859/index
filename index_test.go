@@ -120,6 +120,34 @@ func TestIndex_GetAll(t *testing.T) {
 		require.Equal(t, nil, err)
 		assert.Equal(t, []int{0, 2}, indexes)
 	})
+
+	t.Run("returns an error if the given slice is multidimensional", func(t *testing.T) {
+		//given
+		slice := []([]int){{1, 2}, {3}}
+		item := []int{3}
+
+		//when
+		indexes, err := index.GetAll(slice, item)
+
+		//then
+		require.Equal(t, "index: given multidimensional slice", err.Error())
+		assert.Equal(t, []int{}, indexes)
+	})
+
+	t.Run("returns an error if the given slice is multidimensional", func(t *testing.T) {
+		//given
+		slice := make([]map[string]int, 1, 1)
+		item := make(map[string]int)
+		item["key"] = 1
+		slice[0] = item
+
+		//when
+		indexes, err := index.GetAll(slice, item)
+
+		//then
+		require.Equal(t, "index: given too complex slice of maps", err.Error())
+		assert.Equal(t, []int{}, indexes)
+	})
 }
 
 func TestIndex_IsAny(t *testing.T) {

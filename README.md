@@ -20,6 +20,7 @@ import (
   "fmt"
   "github.com/franpog859/index"
 )
+
 func main() {
   slice := []int{1, 2, 3, 1}
   item := 1
@@ -36,10 +37,16 @@ func main() {
 Output:
 [0 3]
 ```
+Remember not to pass some complex slices like multidimensional slices or slices of maps. This package just does not deal with such complexity so remember to check the `err` value! 
+
+If you want to see examples of usage other functions go to [USAGE.md](https://github.com/franpog859/index/blob/master/USAGE.md) file.
 ## Contribution
 
 If you want to make this package better just fork this repository and prepare your pull request! Remember to keep the code clean and to test your implementation :wink:
 
-To test this package run `git clone https://github.com/franpog859/index.git`, `cd index` and `go test ./...` in your terminal.
+To test this package run in your terminal: 
+- `git clone https://github.com/franpog859/index.git`
+- `cd index` 
+- `go test ./...`
 
 If you see some bug or bad habit feel free to tell me! 
