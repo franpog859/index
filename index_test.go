@@ -134,7 +134,7 @@ func TestIndex_GetAll(t *testing.T) {
 		assert.Equal(t, []int{}, indexes)
 	})
 
-	t.Run("returns an error if the given slice is multidimensional", func(t *testing.T) {
+	t.Run("returns an error if the given slice is too complex and contains maps", func(t *testing.T) {
 		//given
 		slice := make([]map[string]int, 1, 1)
 		item := make(map[string]int)

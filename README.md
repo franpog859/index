@@ -8,7 +8,9 @@
 
 ## Description
 
-Index is a little Go package. It allows you to check on which indexes your item is positioned in the slice. It works with every type of slices! There is a common Go problem to pass the slice with unknown type to the function. It is solved here with the [reflect](https://golang.org/pkg/reflect/) package and [this](https://stackoverflow.com/questions/12753805/type-converting-slices-of-interfaces-in-go) idea turned out to be a very good solution.
+Index is a little Go package. It provides high level generic like functions for simple slices.
+
+It allows you to check on which indexes your item is positioned in the slice. Index also allows you to check if your item exist in the slice or how many of them are there. It works with every type of simple slices! There is a common Go problem to pass the slice with unknown type to the function. It is solved here with the [reflect](https://golang.org/pkg/reflect/) package and [this](https://stackoverflow.com/questions/12753805/type-converting-slices-of-interfaces-in-go) idea turned out to be a very good solution.
 
 ## Usage
 
