@@ -2,6 +2,7 @@
 package index
 
 import (
+	"fmt"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -11,11 +12,7 @@ import (
 // is positioned in the slice. First argument is the slice in which
 // you are searching for your item and the second one is the item.
 func GetAll(givenSlice interface{}, givenItem interface{}) (indexes []int, err error) {
-	defer func() {
-		if recover() != nil {
-			err = errors.New("index: incorrect usage of the package")
-		}
-	}()
+	defer catchPanicIfOccured(&err)
 
 	slice, err := getSliceFromInterface(givenSlice)
 	if err != nil {
@@ -35,26 +32,32 @@ func GetAll(givenSlice interface{}, givenItem interface{}) (indexes []int, err e
 	return indexes, nil
 }
 
-func getSliceFromInterface(sliceInterface interface{}) (slice []interface{}, err error) {
-	value := reflect.ValueOf(sliceInterface)
-	if value.Kind() != reflect.Slice {
+func catchPanicIfOccured(err *error) {
+	if rec := recover(); rec != nil {
+		*err = fmt.Errorf("index: incorrect usage of the package, %v", rec)
+	}
+}
+
+func getSliceFromInterface(unknownSlice interface{}) (slice []interface{}, err error) {
+	reflectedSlice := reflect.ValueOf(unknownSlice)
+	if reflectedSlice.Kind() != reflect.Slice {
 		return nil, errors.New("index: given non-slice type")
 	}
 
-	slice = make([]interface{}, value.Len())
-	for i := 0; i < value.Len(); i++ {
-		slice[i] = value.Index(i).Interface()
+	slice = make([]interface{}, reflectedSlice.Len())
+	for i := 0; i < reflectedSlice.Len(); i++ {
+		slice[i] = reflectedSlice.Index(i).Interface()
 	}
 
 	return slice, nil
 }
 
 func checkItemComplexity(item interface{}) (err error) {
-	value := reflect.ValueOf(item)
-	if value.Kind() == reflect.Slice {
+	reflectedItem := reflect.ValueOf(item)
+	if reflectedItem.Kind() == reflect.Slice {
 		return errors.New("index: given multidimensional slice")
 	}
-	if value.Kind() == reflect.Map {
+	if reflectedItem.Kind() == reflect.Map {
 		return errors.New("index: given too complex slice of maps")
 	}
 
